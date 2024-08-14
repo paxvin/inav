@@ -124,8 +124,8 @@ typedef struct __attribute__ ((__packed__)) bmi270ContextData_s {
     uint16_t    chipMagicNumber;
     uint8_t     lastReadStatus;
     uint8_t     __padding_dummy;
-    uint8_t     gyroRaw[6];
     uint8_t     accRaw[6];
+    uint8_t     gyroRaw[6];
 } bmi270ContextData_t;
 
 STATIC_ASSERT(sizeof(bmi270ContextData_t) < BUS_SCRATCHPAD_MEMORY_SIZE, busDevice_scratchpad_memory_too_small);
