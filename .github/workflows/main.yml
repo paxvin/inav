@@ -1,1 +1,30 @@
-a-b
+name: Build INAV Firmware
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: sudo apt-get install gcc-arm-none-eabi make ninja-build
+
+    - name: Build firmware
+      run: |
+        make -j $(nproc) MYTARGET
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: firmware
+        path: bin/
